@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive Assistant - Deep Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#ff8680",
+              "on-primary": "#ffffff",
+              "background": "#fcf9f8",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#930015",
+              "on-surface-variant": "#464652",
+              "inverse-primary": "#bdc2ff",
+              "on-secondary-fixed-variant": "#005145",
+              "inverse-surface": "#313030",
+              "surface-container-high": "#ebe7e7",
+              "secondary": "#006b5c",
+              "on-primary-fixed-variant": "#343d96",
+              "surface-tint": "#4c56af",
+              "surface-container": "#f0edec",
+              "surface-container-low": "#f6f3f2",
+              "on-secondary-container": "#007261",
+              "surface-variant": "#e5e2e1",
+              "secondary-fixed-dim": "#44ddc1",
+              "tertiary-fixed": "#ffdad7",
+              "on-primary-container": "#99a2ff",
+              "primary-fixed-dim": "#bdc2ff",
+              "outline-variant": "#c7c5d4",
+              "on-error-container": "#93000a",
+              "outline": "#777683",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#000767",
+              "tertiary-container": "#830012",
+              "surface-container-highest": "#e5e2e1",
+              "secondary-container": "#68fadd",
+              "on-tertiary-fixed": "#410004",
+              "surface-bright": "#fcf9f8",
+              "inverse-on-surface": "#f3f0ef",
+              "surface": "#fcf9f8",
+              "surface-dim": "#dcd9d9",
+              "on-error": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "primary": "#101a77",
+              "secondary-fixed": "#68fadd",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#e0e0ff",
+              "on-secondary-fixed": "#00201a",
+              "primary-container": "#2b348d",
+              "tertiary": "#5a0009",
+              "on-background": "#1c1b1b",
+              "error-container": "#ffdad6",
+              "on-surface": "#1c1b1b"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .asymmetric-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 1.5rem;
+      }
+      @media (max-width: 1024px) {
+        .asymmetric-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 px-6 py-4 bg-[#fcf9f8] dark:bg-slate-950 tonal-transition">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="professional portrait of a confident executive in a tailored suit with a neutral warm office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdG-w5jFM8efckfL6q1v4sY9MIXKxLXF_9kiQ-fj75ezOkS6YKXo8I7ZXujAexFILe8iy1O0RO-Ict_idBUhutGbn-SiayiT9s-lRTs9dB6tKKonqCxLxbYuNJoSHPAMDHpvQODi0uSyR2MKLLZ1ZqZisQboesW5qk6Qk-NWmili6oLJpOOo3C6wY76VRlG1Tz6IwUUfbUAfLbigigO63T66cN_bXF6J4h4W0t7ErwBemGhPMmvy_9iwvOcMkKX3Ocw1mvUgz2pg"/>
+</div>
+<h1 class="font-headline font-bold tracking-tight text-xl text-[#101a77] dark:text-indigo-300">Executive Assistant</h1>
+</div>
+<button class="material-symbols-outlined text-[#101a77] dark:text-indigo-400 hover:opacity-80 transition-opacity scale-95 active:scale-90" data-icon="sync">sync</button>
+</header>
+<main class="px-6 pt-4 pb-32 max-w-7xl mx-auto space-y-8">
+<!-- Header & Time Filters -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-1">
+<p class="font-label text-xs uppercase tracking-[0.15em] text-outline font-semibold">Intelligence Hub</p>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight">Deep Analytics</h2>
+</div>
+<div class="flex p-1 bg-surface-container-low rounded-2xl">
+<button class="px-5 py-2 text-sm font-semibold rounded-xl transition-all text-outline hover:text-primary">1M</button>
+<button class="px-5 py-2 text-sm font-semibold rounded-xl bg-surface-container-lowest text-primary shadow-sm">3M</button>
+<button class="px-5 py-2 text-sm font-semibold rounded-xl transition-all text-outline hover:text-primary">6M</button>
+<button class="px-5 py-2 text-sm font-semibold rounded-xl transition-all text-outline hover:text-primary">1Y</button>
+</div>
+</section>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Main Balance Card -->
+<div class="md:col-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#101a77] to-[#2b348d] p-8 text-white shadow-[0_12px_40px_rgba(16,26,119,0.15)]">
+<div class="relative z-10 flex flex-col justify-between h-full space-y-8">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label text-xs uppercase tracking-widest opacity-70">Projected Net Value</p>
+<h3 class="font-headline text-4xl font-bold mt-2">₹1,24,500.00</h3>
+</div>
+<div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-sm text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="text-xs font-bold text-secondary-fixed-dim">+18% vs last month</span>
+</div>
+</div>
+<div class="flex gap-12">
+<div class="space-y-1">
+<p class="text-[10px] uppercase tracking-widest opacity-60">Revenue Growth</p>
+<p class="text-xl font-bold">15%</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] uppercase tracking-widest opacity-60">Net Margin</p>
+<p class="text-xl font-bold text-secondary-fixed">18%</p>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-secondary/20 blur-[80px] rounded-full"></div>
+</div>
+<!-- Decision Impact Card -->
+<div class="rounded-3xl bg-surface-container-lowest p-8 flex flex-col justify-between border border-outline-variant/10 shadow-sm">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="font-headline text-xl font-bold text-primary">Strategic Insight</p>
+<p class="text-on-surface-variant leading-relaxed">Reducing expenses by <span class="font-bold text-on-surface">₹2,000</span> will increase profit by <span class="font-bold text-secondary">8%</span>.</p>
+</div>
+<button class="mt-6 flex items-center justify-center gap-2 w-full py-4 bg-surface-container-high rounded-2xl font-bold text-primary hover:bg-surface-container-highest transition-colors">
+                    Optimize Now
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Performance Graph Section -->
+<section class="asymmetric-grid">
+<!-- Full Line Chart Area -->
+<div class="rounded-3xl bg-surface-container-low p-8 space-y-8">
+<div class="flex justify-between items-center">
+<h4 class="font-headline text-xl font-bold tracking-tight">Performance Trends</h4>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-xs font-semibold text-outline uppercase tracking-wider">Revenue</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-xs font-semibold text-outline uppercase tracking-wider">Profit</span>
+</div>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="h-64 relative flex items-end justify-between pt-12">
+<!-- SVG Chart Representation -->
+<svg class="absolute inset-0 w-full h-full preserve-3d" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#101a77" stop-opacity="0.1"></stop>
+<stop offset="100%" stop-color="#101a77" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q100,120 200,160 T400,100 T600,140 T800,40" fill="none" stroke="#101a77" stroke-width="3"></path>
+<path d="M0,150 Q100,120 200,160 T400,100 T600,140 T800,40 V200 H0 Z" fill="url(#chartGradient)"></path>
+<!-- Secondary glowing line -->
+<path d="M0,180 Q100,170 200,185 T400,140 T600,160 T800,120" fill="none" stroke="#006b5c" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+<!-- Y-Axis labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-outline font-bold py-2">
+<span>250K</span>
+<span>150K</span>
+<span>50K</span>
+<span>0</span>
+</div>
+</div>
+<div class="flex justify-between text-[10px] text-outline font-bold px-4">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span>
+</div>
+</div>
+<!-- Category Breakdown Donut -->
+<div class="rounded-3xl bg-surface-container-low p-8 flex flex-col">
+<h4 class="font-headline text-xl font-bold tracking-tight mb-8">Asset Allocation</h4>
+<div class="flex-grow flex flex-col items-center justify-center relative">
+<!-- Donut Chart Circle -->
+<div class="relative w-48 h-48 rounded-full border-[12px] border-surface-container-highest flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[12px] border-primary border-r-transparent border-b-transparent rotate-45"></div>
+<div class="absolute inset-0 rounded-full border-[12px] border-secondary border-t-transparent border-l-transparent -rotate-12"></div>
+<div class="text-center">
+<p class="text-xs text-outline font-bold uppercase tracking-widest">Total</p>
+<p class="text-2xl font-extrabold text-primary">₹84K</p>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">Fixed Deposits</span>
+</div>
+<span class="text-sm font-bold">55%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm font-medium">Equities</span>
+</div>
+<span class="text-sm font-bold">32%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<span class="text-sm font-medium">Liquidity</span>
+</div>
+<span class="text-sm font-bold">13%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Cash Flow Section -->
+<section class="rounded-3xl bg-surface-container-lowest p-8 border border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+<div class="space-y-1">
+<h4 class="font-headline text-xl font-bold tracking-tight">Cash Flow Dynamics</h4>
+<p class="text-sm text-on-surface-variant">Monitoring capital velocity over the current quarter.</p>
+</div>
+<div class="flex gap-4">
+<div class="px-4 py-2 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-bold text-secondary uppercase tracking-wider">Inflow: ₹42,000</span>
+</div>
+<div class="px-4 py-2 rounded-xl bg-primary/5 border border-primary/10 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Outflow: ₹18,400</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-6 md:grid-cols-12 gap-4 items-end h-40">
+<!-- Bar 1 -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg transition-all h-[40%] group-hover:h-[45%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg transition-all h-[20%] group-hover:h-[25%] opacity-40"></div>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg transition-all h-[60%] group-hover:h-[65%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg transition-all h-[30%] group-hover:h-[35%] opacity-40"></div>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg transition-all h-[80%] group-hover:h-[85%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg transition-all h-[25%] group-hover:h-[30%] opacity-40"></div>
+</div>
+<!-- Bar 4 (Active/Highlight) -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary rounded-t-lg transition-all h-[95%] shadow-[0_0_20px_rgba(0,107,92,0.3)]"></div>
+<div class="w-full bg-primary rounded-t-lg transition-all h-[45%] shadow-[0_0_20px_rgba(16,26,119,0.2)]"></div>
+</div>
+<!-- Bar 5 -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg transition-all h-[55%] group-hover:h-[60%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg transition-all h-[35%] group-hover:h-[40%] opacity-40"></div>
+</div>
+<!-- Bar 6 -->
+<div class="flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg transition-all h-[70%] group-hover:h-[75%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg transition-all h-[20%] group-hover:h-[25%] opacity-40"></div>
+</div>
+<!-- Repeated for visual fill -->
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[45%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[30%] opacity-40"></div>
+</div>
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[65%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[25%] opacity-40"></div>
+</div>
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[35%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[50%] opacity-40"></div>
+</div>
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[80%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[15%] opacity-40"></div>
+</div>
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[55%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[20%] opacity-40"></div>
+</div>
+<div class="hidden md:flex flex-col gap-2 items-center group h-full justify-end">
+<div class="w-full bg-secondary-container rounded-t-lg h-[60%]"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[30%] opacity-40"></div>
+</div>
+</div>
+<div class="flex justify-between mt-6 text-[10px] text-outline font-bold uppercase tracking-widest px-2">
+<span>Week 01</span>
+<span>Week 04</span>
+<span>Week 08</span>
+<span>Week 12</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-12px_40px_rgba(16,26,119,0.06)] rounded-t-[24px]">
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#101a77] to-[#2b348d] text-white rounded-2xl px-4 py-2 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider mt-1">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assistant">assistant</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider mt-1">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

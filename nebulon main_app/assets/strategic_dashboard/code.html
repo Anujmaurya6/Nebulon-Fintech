@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive Assistant - Business Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#ff8680",
+              "on-primary": "#ffffff",
+              "background": "#fcf9f8",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#930015",
+              "on-surface-variant": "#464652",
+              "inverse-primary": "#bdc2ff",
+              "on-secondary-fixed-variant": "#005145",
+              "inverse-surface": "#313030",
+              "surface-container-high": "#ebe7e7",
+              "secondary": "#006b5c",
+              "on-primary-fixed-variant": "#343d96",
+              "surface-tint": "#4c56af",
+              "surface-container": "#f0edec",
+              "surface-container-low": "#f6f3f2",
+              "on-secondary-container": "#007261",
+              "surface-variant": "#e5e2e1",
+              "secondary-fixed-dim": "#44ddc1",
+              "tertiary-fixed": "#ffdad7",
+              "on-primary-container": "#99a2ff",
+              "primary-fixed-dim": "#bdc2ff",
+              "outline-variant": "#c7c5d4",
+              "on-error-container": "#93000a",
+              "outline": "#777683",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#000767",
+              "tertiary-container": "#830012",
+              "surface-container-highest": "#e5e2e1",
+              "secondary-container": "#68fadd",
+              "on-tertiary-fixed": "#410004",
+              "surface-bright": "#fcf9f8",
+              "inverse-on-surface": "#f3f0ef",
+              "surface": "#fcf9f8",
+              "surface-dim": "#dcd9d9",
+              "on-error": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "primary": "#101a77",
+              "secondary-fixed": "#68fadd",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#e0e0ff",
+              "on-secondary-fixed": "#00201a",
+              "primary-container": "#2b348d",
+              "tertiary": "#5a0009",
+              "on-background": "#1c1b1b",
+              "error-container": "#ffdad6",
+              "on-surface": "#1c1b1b"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "16px", "xl": "24px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        backdrop-filter: blur(24px);
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed-dim">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 px-6 bg-[#fcf9f8] dark:bg-slate-950 py-4 no-line tonal-transition bg-[#f6f3f2] dark:bg-slate-900">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="high-end studio portrait of a professional entrepreneur with soft lighting and minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARDl1CjXRRScM8EAoPtaYos58eNpACOu4nLvQDnz9sPYzG_HlWc2LIigntQcWsQ3E07mwim67Yt1iUYZ27J-bdwju6MPbR1RM8Pdd4rulwLF0xhcVkXFDxwKpNsHDeRZnA0HfYci29RHsZGGfThtCsb7Hl3IRy3xdRsMnMIcnRnYgnVCc2PWJfKAlDVvtohmGmGebPnRMUh1VGd4trAZA_J4DTxBXa1PTXpQ2ogcnWGVZKkjOwoKTfL5bi4h2sU_A4fo4oMZ_5xA"/>
+</div>
+<span class="text-xl font-extrabold text-[#101a77] dark:text-indigo-300 font-headline tracking-tight">Executive Assistant</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container/20 border border-secondary/10">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="font-label text-[11px] font-bold uppercase tracking-wider text-secondary">Synced</span>
+</div>
+<button class="material-symbols-outlined text-[#101a77] dark:text-indigo-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">notifications</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-8 pb-32">
+<!-- Hero Section: Greeting & Financial Health -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+<div class="lg:col-span-8 flex flex-col justify-center">
+<h1 class="font-headline text-display-md text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">Hello, User</h1>
+<p class="text-outline text-lg max-w-xl leading-relaxed">Your business momentum is holding steady. We've detected a slight increase in operating efficiency this morning.</p>
+<!-- Quick Insight -->
+<div class="mt-8 p-6 bg-surface-container-low rounded-xl border-l-4 border-primary shadow-sm flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="font-body text-on-surface-variant font-medium leading-snug">
+                        Your business is profitable but subscription costs are rising. Consider reviewing inactive SaaS seats.
+                    </p>
+</div>
+</div>
+<!-- Health Score Bento Item -->
+<div class="lg:col-span-4 bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-white relative overflow-hidden shadow-[0_12px_40px_rgba(16,26,119,0.12)]">
+<div class="relative z-10 flex flex-col items-center">
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.2em] mb-6 opacity-80">Financial Health Score</span>
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/10" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary-fixed shadow-[0_0_15px_rgba(104,250,221,0.5)]" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="66" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline text-5xl font-extrabold">85</span>
+<span class="font-label text-xs font-bold uppercase text-secondary-fixed">Excellent</span>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-md">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label text-xs font-semibold">↑ 12% today vs yesterday</span>
+</div>
+</div>
+<!-- Decorative Glow -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-secondary-fixed opacity-10 rounded-full blur-[80px]"></div>
+</div>
+</section>
+<!-- Today Summary Strip -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between border border-outline-variant/10">
+<div>
+<span class="font-label text-[11px] font-bold text-outline uppercase tracking-wider mb-1 block">Today Income</span>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline text-2xl font-bold text-primary">$4,250</h3>
+<span class="text-secondary font-bold text-sm bg-secondary/10 px-2 py-0.5 rounded-full">+2.4%</span>
+</div>
+</div>
+<div class="w-24 h-12">
+<img alt="Trend" class="w-full h-full opacity-40" data-alt="minimalist green line graph with soft glowing gradient fill on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-XnF-6ZyAZrGsls68bj1z4olO51jeiQ9lT3rrc8Ow7926XgQxh5k_CFm2CNIsV7UcGR046ga-JZFcwQbKOepCq5CYK9m27iIG0VTL1MQ4RZp2-2xnfcvBMIiTaE9FC8AQxaAAYHgsrH1Ew_9RuFiHXcsTD1twnIcjpTphDy2ixqW0518JdhRc86uykOB7TyxKjovc8eB5AbgmkI2dbAC60bXdybtjOjLwZCnROY7aplEP1zyKP-zknkl5knA21ybhFHPUslYqMg"/>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg flex items-center justify-between border border-outline-variant/10">
+<div>
+<span class="font-label text-[11px] font-bold text-outline uppercase tracking-wider mb-1 block">Today Expenses</span>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline text-2xl font-bold text-primary">$1,120</h3>
+<span class="text-error font-bold text-sm bg-error/10 px-2 py-0.5 rounded-full">-0.8%</span>
+</div>
+</div>
+<div class="w-24 h-12">
+<img alt="Trend" class="w-full h-full opacity-40" data-alt="minimalist red line graph showing a slight downward trend with soft shadows on white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1rQv3xEJASWdSPhxdSc8IXHm2s0FJNeXLnaYOWxtvh4MIkAP6WK_YvZjHt0SJeeD2qWNL5id97NiSlvKx0u1Q0rfQ0rBt2zxbgpZ-j7XJzlBAGUW5f92CdIBM3m6_v1vt-sg28Br2mxv6_ro11wP0vz2E9oL_dVLblGfMhYibjWSAFUI80W6eQWNaPwk8XPJJK9Io4YzSdwnMnVi2LCuX8KX9J1Ds6BozKk7PVqPNC81Aw96O_htfi1pxYpK8HgYK6Edn-uus0A"/>
+</div>
+</div>
+</section>
+<!-- KPI Cards Grid & Recent Transactions -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: KPIs (8 columns) -->
+<div class="lg:col-span-8 space-y-6">
+<h2 class="font-headline text-xl font-bold text-primary px-2">Operational Performance</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Profit Margin -->
+<div class="bg-surface-container-low p-6 rounded-lg group hover:bg-white transition-all duration-300">
+<span class="material-symbols-outlined text-primary mb-4 p-2 bg-primary/5 rounded-lg">account_balance_wallet</span>
+<div class="font-label text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Profit Margin</div>
+<div class="font-headline text-3xl font-extrabold text-primary">24%</div>
+<div class="mt-4 w-full h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[24%] h-full bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Expense Ratio -->
+<div class="bg-surface-container-low p-6 rounded-lg group hover:bg-white transition-all duration-300">
+<span class="material-symbols-outlined text-primary mb-4 p-2 bg-primary/5 rounded-lg">payments</span>
+<div class="font-label text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Expense Ratio</div>
+<div class="font-headline text-3xl font-extrabold text-primary">35%</div>
+<div class="mt-4 w-full h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[35%] h-full bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Revenue Growth -->
+<div class="bg-surface-container-low p-6 rounded-lg group hover:bg-white transition-all duration-300">
+<span class="material-symbols-outlined text-primary mb-4 p-2 bg-primary/5 rounded-lg">monitoring</span>
+<div class="font-label text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Revenue Growth</div>
+<div class="font-headline text-3xl font-extrabold text-primary">12%</div>
+<div class="mt-4 w-full h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[12%] h-full bg-secondary-fixed-dim rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Main Chart Canvas -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 min-h-[300px] flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline font-bold text-primary">Revenue Pulse</h3>
+<p class="font-label text-xs text-outline">Real-time revenue tracking over 24h</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high font-label text-[10px] font-bold uppercase tracking-wider text-primary">Daily</button>
+<button class="px-4 py-1.5 rounded-full bg-primary text-white font-label text-[10px] font-bold uppercase tracking-wider">Weekly</button>
+</div>
+</div>
+<div class="flex-grow flex items-end justify-between gap-4 pt-10">
+<!-- Mock Bars with tonal layering -->
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[40%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[65%]"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[85%] relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 rounded-md text-[10px] font-bold">Peak</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[55%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[75%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[60%]"></div>
+<div class="flex-1 bg-secondary-fixed-dim rounded-t-lg h-[95%]"></div>
+</div>
+</div>
+</div>
+<!-- Right: Recent Transactions (4 columns) -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container-low rounded-xl p-8 sticky top-28">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline text-xl font-bold text-primary">Recent Activity</h2>
+<button class="text-[10px] font-bold uppercase tracking-widest text-primary hover:underline">View All</button>
+</div>
+<div class="space-y-6">
+<!-- Transaction 1 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-body font-bold text-on-surface text-sm">Apple Store Purchase</h4>
+<p class="font-label text-[11px] text-outline">Hardware Equipment • 2h ago</p>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-sm text-error">-$1,299</div>
+<div class="font-label text-[9px] font-bold text-outline-variant uppercase">Pending</div>
+</div>
+</div>
+<!-- Transaction 2 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-body font-bold text-on-surface text-sm">Stripe Payout</h4>
+<p class="font-label text-[11px] text-outline">Software Services • 5h ago</p>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-sm text-secondary">+$2,450</div>
+<div class="font-label text-[9px] font-bold text-secondary uppercase">Cleared</div>
+</div>
+</div>
+<!-- Transaction 3 -->
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-body font-bold text-on-surface text-sm">Adobe Creative Cloud</h4>
+<p class="font-label text-[11px] text-outline">Subscription • 1d ago</p>
+</div>
+<div class="text-right">
+<div class="font-headline font-bold text-sm text-error">-$54.99</div>
+<div class="font-label text-[9px] font-bold text-outline-variant uppercase">Recurring</div>
+</div>
+</div>
+</div>
+<div class="mt-10 p-4 rounded-lg bg-primary/5 border border-primary/10">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-wider text-primary">AI Strategy Tip</span>
+</div>
+<p class="font-body text-[12px] text-on-surface-variant leading-relaxed">
+                            Based on your cash flow, you have $8,400 available for low-risk reinvestment this month.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-12px_40px_rgba(16,26,119,0.06)] rounded-t-[24px]">
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#101a77] to-[#2b348d] text-white rounded-2xl px-4 py-2 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">assistant</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] dark:text-slate-400 px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#ff8680",
+              "on-primary": "#ffffff",
+              "background": "#fcf9f8",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#930015",
+              "on-surface-variant": "#464652",
+              "inverse-primary": "#bdc2ff",
+              "on-secondary-fixed-variant": "#005145",
+              "inverse-surface": "#313030",
+              "surface-container-high": "#ebe7e7",
+              "secondary": "#006b5c",
+              "on-primary-fixed-variant": "#343d96",
+              "surface-tint": "#4c56af",
+              "surface-container": "#f0edec",
+              "surface-container-low": "#f6f3f2",
+              "on-secondary-container": "#007261",
+              "surface-variant": "#e5e2e1",
+              "secondary-fixed-dim": "#44ddc1",
+              "tertiary-fixed": "#ffdad7",
+              "on-primary-container": "#99a2ff",
+              "primary-fixed-dim": "#bdc2ff",
+              "outline-variant": "#c7c5d4",
+              "on-error-container": "#93000a",
+              "outline": "#777683",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#000767",
+              "tertiary-container": "#830012",
+              "surface-container-highest": "#e5e2e1",
+              "secondary-container": "#68fadd",
+              "on-tertiary-fixed": "#410004",
+              "surface-bright": "#fcf9f8",
+              "inverse-on-surface": "#f3f0ef",
+              "surface": "#fcf9f8",
+              "surface-dim": "#dcd9d9",
+              "on-error": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "primary": "#101a77",
+              "secondary-fixed": "#68fadd",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#e0e0ff",
+              "on-secondary-fixed": "#00201a",
+              "primary-container": "#2b348d",
+              "tertiary": "#5a0009",
+              "on-background": "#1c1b1b",
+              "error-container": "#ffdad6",
+              "on-surface": "#1c1b1b"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 px-6 py-4 bg-[#fcf9f8] tonal-transition no-line">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a businessman in a navy suit with a clean office background in soft focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpSX4YAgiDJKqiyg1MoY-beJw3dxGyGaURCbeDUst8pqGelJvcg8Sl-HtQRzEYGUdiaPLzVdKHmwUKhBqZYX4-hiwOh1SBZg7IwQ-2KuIRdIiOZ01L3Z4vYFfSjLlufqFbxGD4FuzypAPjregEoz10c_j9SYDuQqNqgyeaZWyaxbOgyQfYQu_ip8AgN-ZRQTGld_oHF6pR4liGh7oYgfiL40Hq5LCUARXM-ty2Bt51EMymYh-j1dywgMeO05xTIfGdPTlm1ElLVw"/>
+</div>
+<h1 class="font-headline font-bold tracking-tight text-xl text-primary">Executive Assistant</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="sync">sync</span>
+</button>
+</header>
+<main class="max-w-5xl mx-auto px-6 pt-8 space-y-10">
+<!-- Hero Section: Strategic Overview -->
+<section class="space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<p class="font-label text-xs font-medium uppercase tracking-[0.1em] text-outline mb-2">Morning briefing</p>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface">Financial Action Hub</h2>
+</div>
+<div class="bg-secondary-container/30 px-4 py-2 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-secondary font-semibold text-sm">AI Pulse: Healthy</span>
+</div>
+</div>
+<!-- Bento Grid Insights -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Efficiency Insights Card -->
+<div class="md:col-span-7 bg-surface-container-lowest p-6 rounded-xl space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary/5 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="insights">insights</span>
+</div>
+<h3 class="font-headline font-bold text-lg">Efficiency Insights</h3>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-surface-container-high rounded text-outline">High Priority</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-low rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="subscriptions">subscriptions</span>
+<div>
+<p class="text-on-surface font-semibold">High subscription cost detected</p>
+<p class="text-on-surface-variant text-sm mt-1">Totaling ₹4,500/mo across 4 dormant services.</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary mt-1" data-icon="cloud_done">cloud_done</span>
+<div>
+<p class="text-on-surface font-semibold">Unused cloud credits detected</p>
+<p class="text-on-surface-variant text-sm mt-1">₹1,200 worth of AWS credits expiring in 12 days.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Anomaly Alert Card -->
+<div class="md:col-span-5 bg-tertiary-container/5 p-6 rounded-xl border-l-4 border-error space-y-6">
+<div class="flex items-center gap-3">
+<div class="bg-error/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-error" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-tertiary-container">Anomaly Alert</h3>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl">
+<p class="text-error font-bold text-lg">Expense spike detected in Utilities</p>
+<p class="text-on-surface-variant text-sm mt-2">Electricity billing is 42% higher than your 6-month average.</p>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-error text-white font-bold py-3 rounded-full text-sm hover:opacity-90 transition-opacity">Investigate</button>
+<button class="px-4 py-3 bg-surface-container-high rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="flag">flag</span>
+</button>
+</div>
+</div>
+<p class="text-[10px] font-bold text-error uppercase tracking-widest text-center">Critical Priority Action Required</p>
+</div>
+<!-- Financial Planning Card -->
+<div class="md:col-span-12 lg:col-span-4 bg-primary text-white p-8 rounded-xl relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+<div class="relative z-10 space-y-6">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-xl leading-tight">Save ₹10,000 in 6 months</h3>
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="trending_up">trending_up</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-label uppercase tracking-widest opacity-80">
+<span>Progress</span>
+<span>₹3,334 Saved</span>
+</div>
+<div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim rounded-full" style="width: 33%"></div>
+</div>
+</div>
+<div class="bg-white/10 p-4 rounded-xl">
+<p class="text-xs font-label uppercase tracking-widest opacity-60">Monthly Target</p>
+<p class="text-2xl font-headline font-extrabold mt-1">₹1,667</p>
+<p class="text-[10px] text-secondary-fixed-dim font-bold mt-2 uppercase tracking-tighter">On Track for October</p>
+</div>
+</div>
+</div>
+<!-- Recommendation & Action Hub -->
+<div class="md:col-span-12 lg:col-span-8 bg-surface-container-low p-6 rounded-xl space-y-6">
+<h3 class="font-headline font-bold text-lg px-2">Actionable Recommendations</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_20px_rgba(16,26,119,0.03)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-secondary/10 p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<span class="text-[9px] font-bold bg-secondary/10 text-secondary px-2 py-0.5 rounded uppercase">Medium</span>
+</div>
+<h4 class="font-bold text-on-surface">Reduce Subscription Costs</h4>
+<p class="text-xs text-on-surface-variant mt-2 mb-6">Optimizing your recurring bills could save you ₹54,000 annually.</p>
+<div class="flex gap-2">
+<button class="flex-1 text-[11px] font-bold text-primary bg-primary/5 py-2.5 rounded-full hover:bg-primary/10 transition-colors">View Details</button>
+<button class="flex-1 text-[11px] font-bold text-white bg-gradient-to-br from-primary to-primary-container py-2.5 rounded-full shadow-lg shadow-primary/20">Set Budget</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_20px_rgba(16,26,119,0.03)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="text-[9px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded uppercase">High</span>
+</div>
+<h4 class="font-bold text-on-surface">Tax Harvest Opportunity</h4>
+<p class="text-xs text-on-surface-variant mt-2 mb-6">Realize ₹8,200 in losses to offset capital gains before quarter end.</p>
+<div class="flex gap-2">
+<button class="flex-1 text-[11px] font-bold text-primary bg-primary/5 py-2.5 rounded-full hover:bg-primary/10 transition-colors">Analyze</button>
+<button class="flex-1 text-[11px] font-bold text-white bg-gradient-to-br from-primary to-primary-container py-2.5 rounded-full shadow-lg shadow-primary/20">Execute</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- What to do next Section -->
+<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="checklist">checklist</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold">What to do next</h3>
+<p class="text-on-surface-variant text-sm">Strategic steps tailored to your current position.</p>
+</div>
+</div>
+<div class="space-y-4 max-w-3xl">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low rounded-xl transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full border-2 border-primary/20 flex items-center justify-center text-primary group-hover:border-primary transition-colors">
+<span class="text-xs font-bold">01</span>
+</div>
+<p class="font-medium">Cancel the 'CloudStorage Pro' subscription (₹1,500/mo) — you have 0% usage.</p>
+</div>
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Cancel Now</button>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low rounded-xl transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full border-2 border-primary/20 flex items-center justify-center text-primary group-hover:border-primary transition-colors">
+<span class="text-xs font-bold">02</span>
+</div>
+<p class="font-medium">Verify the Utility spike of ₹2,800. Meter reading error likely.</p>
+</div>
+<button class="bg-surface-container-high text-on-surface-variant text-xs font-bold px-4 py-2 rounded-full">Report Bug</button>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low rounded-xl transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full border-2 border-primary/20 flex items-center justify-center text-primary group-hover:border-primary transition-colors">
+<span class="text-xs font-bold">03</span>
+</div>
+<p class="font-medium">Allocate ₹1,667 to your 'Savings 6-Month' vault for October.</p>
+</div>
+<button class="bg-secondary text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Transfer</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 backdrop-blur-xl rounded-t-[24px] shadow-[0_-12px_40px_rgba(16,26,119,0.06)] no-line">
+<a class="flex flex-col items-center justify-center text-[#777683] px-4 py-2 hover:bg-slate-100 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] px-4 py-2 hover:bg-slate-100 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#101a77] to-[#2b348d] text-white rounded-2xl px-6 py-2 scale-110 duration-300 ease-out shadow-lg shadow-primary/30" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] px-4 py-2 hover:bg-slate-100 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="assistant">assistant</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#777683] px-4 py-2 hover:bg-slate-100 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label text-[10px] font-medium uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+</body></html>
