@@ -59,28 +59,35 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.1),
+                  color: Colors.white.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.account_balance, color: Colors.white, size: 48),
+                child: const Icon(
+                  Icons.account_balance,
+                  color: Colors.white,
+                  size: 48,
+                ),
               ),
               const SizedBox(height: 24),
               Text(
-                'NEBULON',
+                'SMART VAULT',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: Colors.white, letterSpacing: 4,
-                    ),
+                  color: Colors.white,
+                  letterSpacing: 4,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'EXECUTIVE ASSISTANT',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.7), letterSpacing: 2,
-                    ),
+                  color: Colors.white.withOpacity(0.7),
+                  letterSpacing: 2,
+                ),
               ),
               const SizedBox(height: 48),
               const SizedBox(
-                width: 24, height: 24,
+                width: 24,
+                height: 24,
                 child: CircularProgressIndicator(
                   color: AppTheme.mint,
                   strokeWidth: 2,

@@ -22,7 +22,7 @@ class GradientButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.indigo.withValues(alpha: 0.2),
+            color: AppTheme.indigo.withOpacity(0.2),
             blurRadius: 16,
             offset: const Offset(0, 8),
           ),
@@ -41,7 +41,7 @@ class GradientButton extends StatelessWidget {
             if (icon != null) ...[
               const SizedBox(width: 8),
               Icon(icon, size: 20, color: Colors.white),
-            ]
+            ],
           ],
         ),
       ),

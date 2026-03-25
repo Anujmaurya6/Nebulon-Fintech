@@ -17,8 +17,8 @@ class SkeletonLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppTheme.surface.withValues(alpha: 0.5),
-      highlightColor: Colors.white.withValues(alpha: 0.2),
+      baseColor: AppTheme.surface.withOpacity(0.5),
+      highlightColor: Colors.white.withOpacity(0.2),
       period: const Duration(milliseconds: 1500),
       child: Container(
         width: width,
@@ -44,15 +44,27 @@ class SkeletonLoader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          const SkeletonLoader(width: 48, height: 48, borderRadius: BorderRadius.all(Radius.circular(12))),
+          const SkeletonLoader(
+            width: 48,
+            height: 48,
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SkeletonLoader(width: 140, height: 16, borderRadius: BorderRadius.circular(4)),
+                SkeletonLoader(
+                  width: 140,
+                  height: 16,
+                  borderRadius: BorderRadius.circular(4),
+                ),
                 const SizedBox(height: 8),
-                SkeletonLoader(width: 80, height: 12, borderRadius: BorderRadius.circular(4)),
+                SkeletonLoader(
+                  width: 80,
+                  height: 12,
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ],
             ),
           ),

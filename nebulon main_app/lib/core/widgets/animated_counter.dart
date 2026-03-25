@@ -21,10 +21,7 @@ class AnimatedCounter extends StatelessWidget {
       duration: duration,
       curve: Curves.easeOutCirc,
       builder: (context, val, child) {
-        return Text(
-          '$prefix${val.toStringAsFixed(0)}',
-          style: style,
-        );
+        return Text('$prefix${val.toStringAsFixed(0)}', style: style);
       },
     );
   }

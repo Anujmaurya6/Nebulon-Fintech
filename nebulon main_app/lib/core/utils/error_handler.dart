@@ -29,7 +29,11 @@ class ErrorHandler {
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.check_circle_outline, color: Colors.white, size: 20),
+            const Icon(
+              Icons.check_circle_outline,
+              color: Colors.white,
+              size: 20,
+            ),
             const SizedBox(width: 12),
             Expanded(
               child: Text(message, style: const TextStyle(color: Colors.white)),
@@ -58,21 +62,24 @@ class ErrorHandler {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF777683),
-                fontSize: 14,
-              ),
+              style: const TextStyle(color: Color(0xFF777683), fontSize: 14),
             ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: onRetry,
-              icon: const Icon(Icons.refresh, size: 18),
-              label: const Text('Retry'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF101A77),
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: 160,
+              child: ElevatedButton.icon(
+                onPressed: onRetry,
+                icon: const Icon(Icons.refresh_rounded, size: 18),
+                label: const Text('Retry'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF101A77),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
               ),
             ),
           ],
@@ -82,7 +89,10 @@ class ErrorHandler {
   }
 
   /// Builds an empty state widget
-  static Widget buildEmptyWidget(String message, {IconData icon = Icons.inbox_outlined}) {
+  static Widget buildEmptyWidget(
+    String message, {
+    IconData icon = Icons.inbox_outlined,
+  }) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -94,10 +104,7 @@ class ErrorHandler {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF777683),
-                fontSize: 14,
-              ),
+              style: const TextStyle(color: Color(0xFF777683), fontSize: 14),
             ),
           ],
         ),

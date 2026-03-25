@@ -2,11 +2,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 
 class NotificationService {
-  static final FlutterLocalNotificationsPlugin _notificationsPlugin = FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin _notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   static Future<void> init() async {
-    const AndroidInitializationSettings androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const DarwinInitializationSettings iosSettings = DarwinInitializationSettings();
+    const AndroidInitializationSettings androidSettings =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const DarwinInitializationSettings iosSettings =
+        DarwinInitializationSettings();
 
     const InitializationSettings settings = InitializationSettings(
       android: androidSettings,
@@ -26,14 +29,15 @@ class NotificationService {
     required String title,
     required String body,
   }) async {
-    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
-      'nebulon_alerts',
-      'Nebulon Alerts',
-      channelDescription: 'Financial insights and security alerts',
-      importance: Importance.max,
-      priority: Priority.high,
-      color: Color(0xFF4F46E5),
-    );
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+          'smart_vault_alerts',
+          'Smart Vault Alerts',
+          channelDescription: 'Financial insights and security alerts',
+          importance: Importance.max,
+          priority: Priority.high,
+          color: Color(0xFF4F46E5),
+        );
 
     const NotificationDetails details = NotificationDetails(
       android: androidDetails,

@@ -4,12 +4,18 @@ class ApiConstants {
   // Insforge Backend
   static const String baseUrl = 'https://mttjvyj6.us-east.insforge.app';
   static const String apiKey = 'ik_818b6b6dd19e16e9d768afbba191726d';
+  static const String anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OC0xMjM0LTU2NzgtOTBhYi1jZGVmMTIzNDU2NzgiLCJlbWFpbCI6ImFub25AaW5zZm9yZ2UuY29tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MTU2MTB9.A2Jj83_xTKadjREnNYxf0x5XzvQJIIzARkUOWBnflC4';
+
 
   // Auth Endpoints
   static const String signUp = '/api/auth/users';
   static const String signIn = '/api/auth/sessions';
-  static const String signOut = '/api/auth/sessions/logout';
-  static const String currentUser = '/api/auth/user';
+  static const String signOut = '/api/auth/logout';
+  static const String currentUser = '/api/auth/sessions/current';
+
+  // OAuth Endpoints (PKCE)
+  static String oauthInitiate(String provider) => '/api/auth/oauth/$provider';
+  static const String oauthExchange = '/api/auth/oauth/exchange';
 
   // Database Endpoints
   static String records(String table) => '/api/database/records/$table';
@@ -27,6 +33,7 @@ class ApiConstants {
   static const String userProfilesTable = 'user_profiles';
   static const String financialGoalsTable = 'financial_goals';
   static const String aiHistoryTable = 'ai_history';
+  static const String bankAccountsTable = 'bank_accounts';
 
   // Timeouts
   static const Duration connectTimeout = Duration(seconds: 15);

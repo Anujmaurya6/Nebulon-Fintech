@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/analytics_data_source.dart';
 
+import '../../../core/utils/local_db_manager.dart';
+
 class AnalyticsModel {
   final Map<String, double> categoryBreakdown;
   final Map<String, double> incomeTrend;
@@ -34,7 +36,11 @@ class AnalyticsState {
     this.errorMessage,
   });
 
-  AnalyticsState copyWith({AnalyticsStatus? status, AnalyticsModel? data, String? errorMessage}) {
+  AnalyticsState copyWith({
+    AnalyticsStatus? status,
+    AnalyticsModel? data,
+    String? errorMessage,
+  }) {
     return AnalyticsState(
       status: status ?? this.status,
       data: data ?? this.data,
@@ -44,22 +50,13 @@ class AnalyticsState {
 }
 
 class AnalyticsNotifier extends Notifier<AnalyticsState> {
-  final AnalyticsDataSource _dataSource = AnalyticsDataSource();
-
   @override
   AnalyticsState build() => const AnalyticsState();
 
   Future<void> loadAnalytics() async {
-    state = state.copyWith(status: AnalyticsStatus.loading);
-
-    final result = await _dataSource.fetchTransactionsForAnalytics();
-
-    if (result['error'] != null) {
-      state = state.copyWith(status: AnalyticsStatus.error, errorMessage: result['error'] as String);
-      return;
-    }
-
-    final transactions = result['data'] as List? ?? [];
+    final transactionsList = LocalDBManager.getAllTransactions();
+    // we use a json dump map to leverage existing code smoothly
+    final transactions = transactionsList.map((t) => t.toJson()).toList();
     final Map<String, double> categories = {};
     final Map<String, double> incomeTrend = {};
     final Map<String, double> expenseTrend = {};
@@ -71,8 +68,9 @@ class AnalyticsNotifier extends Notifier<AnalyticsState> {
 
       final type = tx['type']?.toString().toLowerCase() ?? 'expense';
       final category = tx['category']?.toString() ?? 'Other';
-      final dateStr = tx['date']?.toString() ?? tx['created_at']?.toString() ?? '';
-      
+      final dateStr =
+          tx['date']?.toString() ?? tx['created_at']?.toString() ?? '';
+
       // Format month as YYYY-MM for trend
       final month = dateStr.length >= 7 ? dateStr.substring(0, 7) : 'Unknown';
 
@@ -86,7 +84,9 @@ class AnalyticsNotifier extends Notifier<AnalyticsState> {
       }
     }
 
-    final savingsRate = totalIncome > 0 ? ((totalIncome - totalExpense) / totalIncome) * 100 : 0.0;
+    final savingsRate = totalIncome > 0
+        ? ((totalIncome - totalExpense) / totalIncome) * 100
+        : 0.0;
 
     state = state.copyWith(
       status: AnalyticsStatus.loaded,
@@ -103,4 +103,6 @@ class AnalyticsNotifier extends Notifier<AnalyticsState> {
   }
 }
 
-final analyticsProvider = NotifierProvider<AnalyticsNotifier, AnalyticsState>(AnalyticsNotifier.new);
+final analyticsProvider = NotifierProvider<AnalyticsNotifier, AnalyticsState>(
+  AnalyticsNotifier.new,
+);

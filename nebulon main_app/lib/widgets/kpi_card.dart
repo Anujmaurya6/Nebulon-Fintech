@@ -6,6 +6,7 @@ class KpiCard extends StatelessWidget {
   final String value;
   final IconData icon;
   final double progress;
+  final bool isAnimated;
 
   const KpiCard({
     super.key,
@@ -13,38 +14,80 @@ class KpiCard extends StatelessWidget {
     required this.value,
     required this.icon,
     required this.progress,
+    this.isAnimated = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
-      width: 140,
-      margin: const EdgeInsets.only(right: 16),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppTheme.surface,
-        borderRadius: BorderRadius.circular(24),
+        color: theme.cardTheme.color,
+        borderRadius: BorderRadius.circular(16),
+        border: theme.cardTheme.shape is RoundedRectangleBorder
+            ? Border.fromBorderSide(
+                (theme.cardTheme.shape as RoundedRectangleBorder).side,
+              )
+            : null,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: AppTheme.indigo, size: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, color: colorScheme.primary, size: 14),
+              ),
+              if (progress > 0)
+                Text(
+                  '${(progress * 100).toStringAsFixed(0)}%',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+            ],
+          ),
           const Spacer(),
           Text(
             title,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.textSecondary),
+            style: theme.textTheme.labelSmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             value,
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(color: AppTheme.indigo),
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.5,
+            ),
           ),
           const SizedBox(height: 8),
-          LinearProgressIndicator(
-            value: progress,
-            backgroundColor: AppTheme.divider,
-            color: AppTheme.indigo,
-            borderRadius: BorderRadius.circular(2),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: progress,
+              backgroundColor: colorScheme.onSurface.withOpacity(0.05),
+              valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+              minHeight: 4,
+            ),
           ),
         ],
       ),

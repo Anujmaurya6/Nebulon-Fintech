@@ -5,18 +5,16 @@ class ChatBubble extends StatelessWidget {
   final String text;
   final bool isUser;
 
-  const ChatBubble({
-    super.key,
-    required this.text,
-    required this.isUser,
-  });
+  const ChatBubble({super.key, required this.text, required this.isUser});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.75,
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
           color: isUser ? AppTheme.indigo : AppTheme.surfaceLight,
@@ -26,10 +24,17 @@ class ChatBubble extends StatelessWidget {
             bottomLeft: isUser ? const Radius.circular(24) : Radius.zero,
             bottomRight: isUser ? Radius.zero : const Radius.circular(24),
           ),
-          border: isUser ? null : Border.all(color: AppTheme.borderLight.withValues(alpha: 0.1)),
-          boxShadow: isUser 
-              ? null 
-              : [BoxShadow(color: AppTheme.indigo.withValues(alpha: 0.04), blurRadius: 40)],
+          border: isUser
+              ? null
+              : Border.all(color: AppTheme.borderLight.withOpacity(0.1)),
+          boxShadow: isUser
+              ? null
+              : [
+                  BoxShadow(
+                    color: AppTheme.indigo.withOpacity(0.04),
+                    blurRadius: 40,
+                  ),
+                ],
         ),
         child: Text(
           text,

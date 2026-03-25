@@ -18,4 +18,16 @@ class ProfileDataSource {
       data: data,
     );
   }
+
+  Future<Map<String, dynamic>> uploadAvatar(String filePath) async {
+    return _client.uploadFile(
+      '/storage/v1/object/avatars/profile_pic.jpg',
+      filePath,
+    );
+  }
+
+  Future<Map<String, dynamic>> deleteAvatar() async {
+    // Standard Supabase/Insforge storage delete
+    return _client.delete('/storage/v1/object/avatars/profile_pic.jpg');
+  }
 }

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/security/lock_service.dart';
 import '../theme/app_theme.dart';
 
-
 class LockScreen extends ConsumerStatefulWidget {
   final Widget child;
   const LockScreen({super.key, required this.child});
@@ -13,7 +12,8 @@ class LockScreen extends ConsumerStatefulWidget {
   ConsumerState<LockScreen> createState() => _LockScreenState();
 }
 
-class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObserver {
+class _LockScreenState extends ConsumerState<LockScreen>
+    with WidgetsBindingObserver {
   bool _isLocked = true;
   bool _isChecking = false;
 
@@ -58,10 +58,10 @@ class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObse
   Future<void> _authenticate() async {
     if (_isChecking) return;
     setState(() => _isChecking = true);
-    
+
     final lockService = ref.read(lockServiceProvider);
     final success = await lockService.authenticate();
-    
+
     if (success) {
       setState(() {
         _isLocked = false;
@@ -84,26 +84,28 @@ class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObse
             imageFilter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
             child: widget.child,
           ),
-          
+
           // Glass Overlay
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
-              color: AppTheme.indigo.withValues(alpha: 0.8),
-            ),
+            decoration: BoxDecoration(color: AppTheme.indigo.withOpacity(0.8)),
           ),
-          
+
           Center(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 40),
               padding: const EdgeInsets.all(32),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.1),
+                color: Colors.white.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(32),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                border: Border.all(color: Colors.white.withOpacity(0.2)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 40, offset: const Offset(0, 20))
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 40,
+                    offset: const Offset(0, 20),
+                  ),
                 ],
               ),
               child: ClipRRect(
@@ -116,20 +118,30 @@ class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObse
                       Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.1),
+                          color: Colors.white.withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.shield_outlined, color: Colors.white, size: 48),
+                        child: const Icon(
+                          Icons.shield_outlined,
+                          color: Colors.white,
+                          size: 48,
+                        ),
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        'Nebulon Vault',
-                        style: Theme.of(context).textTheme.displayLarge?.copyWith(color: Colors.white, fontSize: 24),
+                        'Smart Vault',
+                        style: Theme.of(context).textTheme.displayLarge
+                            ?.copyWith(color: Colors.white, fontSize: 24),
                       ),
                       const SizedBox(height: 8),
                       const Text(
                         'AUTHORIZED ACCESS ONLY',
-                        style: TextStyle(color: AppTheme.mint, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2),
+                        style: TextStyle(
+                          color: AppTheme.mint,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                        ),
                       ),
                       const SizedBox(height: 48),
                       if (_isChecking)
@@ -143,7 +155,9 @@ class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObse
                             backgroundColor: Colors.white,
                             foregroundColor: AppTheme.indigo,
                             minimumSize: const Size(double.infinity, 56),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                             elevation: 0,
                           ),
                         ),
@@ -158,4 +172,3 @@ class _LockScreenState extends ConsumerState<LockScreen> with WidgetsBindingObse
     );
   }
 }
-

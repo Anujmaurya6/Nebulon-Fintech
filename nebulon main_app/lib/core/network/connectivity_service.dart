@@ -33,4 +33,7 @@ class ConnectivityService extends Notifier<ConnectivityStatus> {
   bool get isConnected => state == ConnectivityStatus.isConnected;
 }
 
-final connectivityProvider = NotifierProvider<ConnectivityService, ConnectivityStatus>(ConnectivityService.new);
+final connectivityProvider =
+    NotifierProvider<ConnectivityService, ConnectivityStatus>(
+      ConnectivityService.new,
+    );

@@ -6,7 +6,7 @@ import '../../../core/network/connectivity_service.dart';
 import 'package:uuid/uuid.dart';
 import '../../../core/services/notification_service.dart';
 import 'package:intl/intl.dart';
-
+import '../../../core/utils/local_db_manager.dart';
 
 enum TransactionStatus { initial, loading, loaded, error }
 
@@ -33,13 +33,64 @@ class TransactionState {
     );
   }
 
-  double get totalIncome =>
-      transactions.where((t) => t.isIncome).fold(0.0, (sum, t) => sum + t.amount);
+  double get totalIncome => transactions
+      .where((t) => t.isIncome)
+      .fold(0.0, (sum, t) => sum + t.amount);
 
-  double get totalExpenses =>
-      transactions.where((t) => t.isExpense).fold(0.0, (sum, t) => sum + t.amount);
+  double get totalExpenses => transactions
+      .where((t) => t.isExpense)
+      .fold(0.0, (sum, t) => sum + t.amount);
 
   double get balance => totalIncome - totalExpenses;
+
+  Map<String, double> get categoryExpenses {
+    final expenses = transactions.where((t) => t.isExpense);
+    final map = <String, double>{};
+    for (var t in expenses) {
+      map[t.category] = (map[t.category] ?? 0) + t.amount;
+    }
+    return map;
+  }
+
+  String get topCategory {
+    final catMap = categoryExpenses;
+    if (catMap.isEmpty) return 'None';
+    return catMap.entries.reduce((a, b) => a.value > b.value ? a : b).key;
+  }
+
+  String get spendingTrend {
+    final now = DateTime.now();
+    final currentMonthExpenses = transactions
+        .where(
+          (t) =>
+              t.isExpense &&
+              t.createdAt != null &&
+              t.createdAt!.month == now.month &&
+              t.createdAt!.year == now.year,
+        )
+        .fold(0.0, (sum, t) => sum + t.amount);
+
+    final lastMonth = now.month == 1 ? 12 : now.month - 1;
+    final lastMonthYear = now.month == 1 ? now.year - 1 : now.year;
+
+    final lastMonthExpenses = transactions
+        .where(
+          (t) =>
+              t.isExpense &&
+              t.createdAt != null &&
+              t.createdAt!.month == lastMonth &&
+              t.createdAt!.year == lastMonthYear,
+        )
+        .fold(0.0, (sum, t) => sum + t.amount);
+
+    if (lastMonthExpenses == 0) return 'Stable';
+    if (currentMonthExpenses > lastMonthExpenses) {
+      return 'Increasing';
+    } else if (currentMonthExpenses < lastMonthExpenses) {
+      return 'Decreasing';
+    }
+    return 'Stable';
+  }
 }
 
 class TransactionNotifier extends Notifier<TransactionState> {
@@ -50,67 +101,62 @@ class TransactionNotifier extends Notifier<TransactionState> {
   TransactionState build() => const TransactionState();
 
   Future<void> loadTransactions() async {
-    state = state.copyWith(status: TransactionStatus.loading);
-    final result = await _dataSource.getTransactions();
-
-    if (result['error'] != null) {
-      state = state.copyWith(
-        status: TransactionStatus.error,
-        errorMessage: result['error'] as String,
-      );
-      return;
-    }
-
-    final List<dynamic> data = result['data'] as List? ?? [];
-    final transactions = data.map((e) => TransactionModel.fromJson(Map<String, dynamic>.from(e))).toList();
-    
+    final transactions = LocalDBManager.getAllTransactions();
     state = state.copyWith(
       status: TransactionStatus.loaded,
       transactions: transactions,
     );
   }
 
+  Future<void> seedDummyData() async {
+    // ... skipped seed dummy ...
+  }
+
   Future<bool> addTransaction(TransactionModel tx) async {
-    final isConnected = ref.read(connectivityProvider) == ConnectivityStatus.isConnected;
+    final isConnected =
+        ref.read(connectivityProvider) == ConnectivityStatus.isConnected;
+
+    final txId = tx.id ?? _uuid.v4();
     
-    // Optimistic Update
-    final optimisticTx = tx.id == null ? tx.copyWith(id: _uuid.v4()) : tx;
-    state = state.copyWith(transactions: [optimisticTx, ...state.transactions]);
+    // Always save LOCALLY FIRST as PENDING
+    final pendingTx = tx.copyWith(id: txId, syncStatus: 'PENDING');
+    await LocalDBManager.saveTransaction(pendingTx);
+    
+    // Update state to reflect local DB
+    await loadTransactions();
 
     if (isConnected) {
-      final result = await _dataSource.addTransaction(tx.toJson());
-      if (result['error'] != null) {
-        // Rollback on error
+      final result = await _dataSource.addTransaction(pendingTx.toJson());
+      if (result['error'] == null) {
+        // Success! Mark synced
+        await LocalDBManager.markAsSynced(txId);
         await loadTransactions();
-        return false;
+      } else {
+        // Leave as PENDING for SyncService
       }
     } else {
-      // Queue for sync
-      final action = OfflineAction(
-        id: _uuid.v4(),
-        endpoint: '/rest/v1/transactions',
-        method: 'POST',
-        data: tx.toJson(),
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-      );
+      // Leave as PENDING for SyncService
     }
-    
+
     NotificationService.showNotification(
       id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
       title: 'Vault Entry Secured',
-      body: '${toBeginningOfSentenceCase(tx.type)} of ₹${tx.amount.toInt()} added to vault.',
+      body:
+          '${toBeginningOfSentenceCase(tx.type)} of ₹${tx.amount.toInt()} added to vault.',
     );
-    
-    return true;
+
+    return true; // We always return true for local-first optimism
   }
 
-
   Future<bool> deleteTransaction(String id) async {
-    final isConnected = ref.read(connectivityProvider) == ConnectivityStatus.isConnected;
-    
+    final isConnected =
+        ref.read(connectivityProvider) == ConnectivityStatus.isConnected;
+
     // Optimistic Update
     final originalList = state.transactions;
-    state = state.copyWith(transactions: state.transactions.where((t) => t.id != id).toList());
+    state = state.copyWith(
+      transactions: state.transactions.where((t) => t.id != id).toList(),
+    );
 
     if (isConnected) {
       final result = await _dataSource.deleteTransaction(id);
@@ -129,10 +175,12 @@ class TransactionNotifier extends Notifier<TransactionState> {
       );
       await ActionQueue.enqueue(action);
     }
-    
+
     return true;
   }
 }
 
 final transactionProvider =
-    NotifierProvider<TransactionNotifier, TransactionState>(TransactionNotifier.new);
+    NotifierProvider<TransactionNotifier, TransactionState>(
+      TransactionNotifier.new,
+    );

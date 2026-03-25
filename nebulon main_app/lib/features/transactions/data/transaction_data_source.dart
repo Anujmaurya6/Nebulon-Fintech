@@ -14,7 +14,7 @@ class TransactionDataSource {
   Future<Map<String, dynamic>> addTransaction(Map<String, dynamic> data) async {
     return _client.post(
       ApiConstants.records(ApiConstants.transactionsTable),
-      data: [data],
+      data: data,
     );
   }
 

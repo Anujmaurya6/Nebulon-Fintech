@@ -5,8 +5,6 @@ class AnalyticsDataSource {
   final ApiClient _client = ApiClient();
 
   Future<Map<String, dynamic>> fetchTransactionsForAnalytics() async {
-    return _client.get(
-      ApiConstants.records(ApiConstants.transactionsTable),
-    );
+    return _client.get(ApiConstants.records(ApiConstants.transactionsTable));
   }
 }

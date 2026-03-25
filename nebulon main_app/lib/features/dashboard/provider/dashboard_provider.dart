@@ -4,6 +4,8 @@ import '../data/dashboard_data_source.dart';
 import '../../../core/utils/cache_manager.dart';
 import '../../../core/utils/action_queue.dart';
 
+import '../../../core/utils/local_db_manager.dart';
+
 class DashboardModel {
   final double totalIncome;
   final double totalExpenses;
@@ -37,7 +39,11 @@ class DashboardState {
     this.errorMessage,
   });
 
-  DashboardState copyWith({DashboardStatus? status, DashboardModel? data, String? errorMessage}) {
+  DashboardState copyWith({
+    DashboardStatus? status,
+    DashboardModel? data,
+    String? errorMessage,
+  }) {
     return DashboardState(
       status: status ?? this.status,
       data: data ?? this.data,
@@ -47,59 +53,21 @@ class DashboardState {
 }
 
 class DashboardNotifier extends Notifier<DashboardState> {
-  final DashboardDataSource _dataSource = DashboardDataSource();
-
   @override
   DashboardState build() => const DashboardState();
 
   Future<void> loadDashboard() async {
-    state = state.copyWith(status: DashboardStatus.loading);
-
-    final result = await _dataSource.fetchDashboardData();
-
-    if (result['error'] != null) {
-      final cached = CacheManager.getDashboardCache();
-      if (cached != null && cached is List) {
-        state = state.copyWith(
-          status: DashboardStatus.loaded,
-          data: _computeStats(cached),
-        );
-        return;
-      }
-      state = state.copyWith(
-        status: DashboardStatus.error,
-        errorMessage: result['error'] as String,
-      );
-      return;
-    }
-
-    final data = result['data'] as List? ?? [];
-    await CacheManager.saveDashboardCache(data);
+    // We can fetch synchronously from Hive, but keeping Future for API consistency
+    final transactions = LocalDBManager.getAllTransactions();
 
     state = state.copyWith(
       status: DashboardStatus.loaded,
-      data: _computeStats(data),
+      data: _computeStats(transactions),
     );
   }
 
-  DashboardModel _computeStats(List<dynamic> rawTransactions) {
-    // 1. Convert raw transactions to models
-    List<TransactionModel> transactions = rawTransactions
-        .map((e) => TransactionModel.fromJson(Map<String, dynamic>.from(e)))
-        .toList();
-
-    // 2. Aggregate with pending offline actions for "Zero-Dummy" real-time feel
-    final pendingActions = ActionQueue.getAll();
-    for (final action in pendingActions) {
-      if (action.method == 'POST' && action.data != null) {
-        transactions.add(TransactionModel.fromJson(action.data!));
-      } else if (action.method == 'DELETE') {
-        final id = action.endpoint.split('eq.').last;
-        transactions.removeWhere((t) => t.id == id);
-      }
-    }
-
-    // 3. Compute stats
+  DashboardModel _computeStats(List<TransactionModel> transactions) {
+    // Compute stats directly from local models (includes both PENDING and SYNCED)
     double income = 0, expenses = 0;
     for (final tx in transactions) {
       if (tx.isIncome) {
@@ -111,7 +79,7 @@ class DashboardNotifier extends Notifier<DashboardState> {
 
     final total = income + expenses;
     final balance = income - expenses;
-    
+
     return DashboardModel(
       totalIncome: income,
       totalExpenses: expenses,
@@ -119,10 +87,11 @@ class DashboardNotifier extends Notifier<DashboardState> {
       profitMargin: total > 0 ? balance / total : 0,
       expenseRatio: income > 0 ? expenses / income : 0,
       transactionCount: transactions.length,
-      recentTransactions: transactions.take(5).toList(),
+      recentTransactions: transactions.take(10).toList(),
     );
   }
 }
 
-final dashboardProvider =
-    NotifierProvider<DashboardNotifier, DashboardState>(DashboardNotifier.new);
+final dashboardProvider = NotifierProvider<DashboardNotifier, DashboardState>(
+  DashboardNotifier.new,
+);

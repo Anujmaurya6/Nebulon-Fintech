@@ -28,7 +28,9 @@ class SelectionCard extends StatelessWidget {
             color: isSelected ? AppTheme.indigo : AppTheme.surface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? AppTheme.indigo : AppTheme.borderLight.withValues(alpha: 0.1),
+              color: isSelected
+                  ? AppTheme.indigo
+                  : AppTheme.borderLight.withOpacity(0.1),
             ),
           ),
           child: Column(
@@ -43,7 +45,9 @@ class SelectionCard extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: isSelected ? Colors.white.withValues(alpha: 0.7) : AppTheme.textSecondary,
+                  color: isSelected
+                      ? Colors.white.withOpacity(0.7)
+                      : AppTheme.textSecondary,
                 ),
               ),
               const SizedBox(height: 4),

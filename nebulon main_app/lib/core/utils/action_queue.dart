@@ -35,7 +35,7 @@ class OfflineAction {
 
 class ActionQueue {
   static const String _boxName = 'offline_actions';
-  
+
   static Future<void> init() async {
     await Hive.openBox(_boxName);
   }
@@ -47,7 +47,9 @@ class ActionQueue {
   }
 
   static List<OfflineAction> getAll() {
-    return _box.values.map((v) => OfflineAction.fromJson(jsonDecode(v))).toList()
+    return _box.values
+        .map((v) => OfflineAction.fromJson(jsonDecode(v)))
+        .toList()
       ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
   }
 

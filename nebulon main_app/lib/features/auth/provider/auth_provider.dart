@@ -17,7 +17,11 @@ class AuthState {
     this.errorMessage,
   });
 
-  AuthState copyWith({AuthStatus? status, UserModel? user, String? errorMessage}) {
+  AuthState copyWith({
+    AuthStatus? status,
+    UserModel? user,
+    String? errorMessage,
+  }) {
     return AuthState(
       status: status ?? this.status,
       user: user ?? this.user,
@@ -37,7 +41,9 @@ class AuthNotifier extends Notifier<AuthState> {
     if (isLoggedIn) {
       final user = await repo.getCurrentUser();
       state = state.copyWith(
-        status: user != null ? AuthStatus.authenticated : AuthStatus.unauthenticated,
+        status: user != null
+            ? AuthStatus.authenticated
+            : AuthStatus.unauthenticated,
         user: user,
       );
     } else {
@@ -50,7 +56,10 @@ class AuthNotifier extends Notifier<AuthState> {
     final repo = ref.read(authRepositoryProvider);
     final result = await repo.signIn(email, password);
     if (result.error != null) {
-      state = state.copyWith(status: AuthStatus.error, errorMessage: result.error);
+      state = state.copyWith(
+        status: AuthStatus.error,
+        errorMessage: result.error,
+      );
       return false;
     }
     state = state.copyWith(status: AuthStatus.authenticated, user: result.user);
@@ -62,7 +71,10 @@ class AuthNotifier extends Notifier<AuthState> {
     final repo = ref.read(authRepositoryProvider);
     final result = await repo.signUp(email, password);
     if (result.error != null) {
-      state = state.copyWith(status: AuthStatus.error, errorMessage: result.error);
+      state = state.copyWith(
+        status: AuthStatus.error,
+        errorMessage: result.error,
+      );
       return false;
     }
     state = state.copyWith(status: AuthStatus.authenticated, user: result.user);
@@ -76,4 +88,6 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 }
 
-final authProvider = NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
+final authProvider = NotifierProvider<AuthNotifier, AuthState>(
+  AuthNotifier.new,
+);

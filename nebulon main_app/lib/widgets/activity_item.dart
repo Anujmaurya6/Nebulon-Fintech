@@ -31,7 +31,9 @@ class ActivityItem extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: Icon(
-              isNegative ? Icons.shopping_cart_outlined : Icons.payments_outlined,
+              isNegative
+                  ? Icons.shopping_cart_outlined
+                  : Icons.payments_outlined,
               color: AppTheme.indigo,
               size: 20,
             ),
@@ -43,11 +45,15 @@ class ActivityItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   subtitle,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(color: AppTheme.textSecondary),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: AppTheme.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -64,9 +70,9 @@ class ActivityItem extends StatelessWidget {
               ),
               Text(
                 status.toUpperCase(),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: AppTheme.textSecondary,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: AppTheme.textSecondary),
               ),
             ],
           ),

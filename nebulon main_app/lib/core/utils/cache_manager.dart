@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../constants/api_constants.dart';
 
 class CacheManager {
-  static const String _boxName = 'nebulon_cache';
+  static const String _boxName = 'smart_vault_cache';
 
   static Future<void> init() async {
     await Hive.initFlutter();
@@ -27,7 +27,10 @@ class CacheManager {
   }
 
   /// Check if cache is still valid (within maxAge)
-  static bool isCacheValid(String key, {Duration maxAge = const Duration(minutes: 5)}) {
+  static bool isCacheValid(
+    String key, {
+    Duration maxAge = const Duration(minutes: 5),
+  }) {
     final timestamp = _box.get('${key}_timestamp');
     if (timestamp == null) return false;
     final cacheTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
@@ -40,7 +43,8 @@ class CacheManager {
       saveData(ApiConstants.dashboardCacheKey, data);
 
   /// Get cached transactions
-  static dynamic getTransactionsCache() => getData(ApiConstants.transactionsCacheKey);
+  static dynamic getTransactionsCache() =>
+      getData(ApiConstants.transactionsCacheKey);
   static Future<void> saveTransactionsCache(dynamic data) =>
       saveData(ApiConstants.transactionsCacheKey, data);
 
