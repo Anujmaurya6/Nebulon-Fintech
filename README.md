@@ -10,7 +10,7 @@ Smart Vault is a modern fintech application designed to track income, expenses, 
 
 🚀 Experience Nebulon on your Android device.
 
-👉 **[⬇️ Download APK](https://github.com/Anujmaurya6/Nebulon-Fintech/releases/download/v1.0/vault-app-v1.0.apk)**
+👉 **[⬇️ Download APK](https://github.com/Anujmaurya6/Nebulon-Fintech/releases/download/v1.0/app-release.apk)**
 
 ---
 
